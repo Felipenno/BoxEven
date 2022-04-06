@@ -1,0 +1,32 @@
+.filtro-relatorio{
+  background-color: #6D4EC3;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  label{
+    margin-right: 5px;
+  }
+
+  select{
+    cursor: pointer;
+    margin-right: 15px;
+    border-radius: 2px;
+    border: 1px solid #6D4EC3;
+    box-shadow:  1px 1px 1px 0px rgba(0, 0, 0, 0.500);
+    height: 23px;
+  }
+}
+
+.relatorio-gerado{
+  width: 100%;
+  border: solid 2px #6D4EC3;
+  box-sizing: border-box;
+
+  h2{
+    text-align: center;
+    color: #6D4EC3;
+  }
+}

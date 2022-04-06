@@ -1,0 +1,97 @@
+<form autocomplete="off" novalidate class="produto-input" [formGroup]="produtoForm">
+  <h2>Editar Produto</h2>
+
+  <div class="div-text">
+    <label for="nome">Nome:</label>
+    <input id="nome" type="text" placeholder="Descrição" formControlName="nome">
+    <label for="codigo-barras">Cód. Barras:</label>
+    <input id="codigo-barras" type="text" placeholder="Código Barras" formControlName="codigoBarras">
+  </div>
+  
+  <div class="input-number">
+    <label for="preco">Preço:</label>
+    <label for="codigo">Código:</label>
+    <label for="quantidade">Quantidade:</label>
+    <input id="preco" type="number" placeholder="Preço" formControlName="preco">
+    <input id="codigo" type="number" placeholder="Código" formControlName="produtoId">
+    <input id="quantidade" type="number" placeholder="Quantidade" readonly formControlName="quantidade">
+  </div>
+
+  <section>
+    <div class="check-input">
+      <label for="check-ativo">Ativo</label>
+      <input type="checkbox" id="check-ativo" formControlName="ativo">
+    </div>
+    
+    <label class="label-unidade" for="medida">Unidade de medida: </label>
+    <select id="medida" formControlName="unidadeMedidaId">
+      <option value="" >Selecione</option>
+      <option value="1">Caixa</option>
+      <option value="2">Unidade</option>
+      <option value="3">Pacote</option>
+      <option value="4">Outro</option>
+      <option value="5">Metro</option>
+    </select>
+  </section>
+
+  <div class="localizacao">
+    <table class="table-principal">
+      <caption><strong>Localização</strong></caption>
+      <thead>
+        <tr>
+          <th>Disponiveis</th>
+          <th>Adicionados</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <table class="lista-endereco">
+              <tbody>
+                <tr *ngFor="let item of localizacoesDisponiveis">
+                  <td class="td-endereco">
+                    {{item.endereco}}
+                  </td>
+                  <td>
+                    <button class="btn-branco" [ngClass]="{'btn-disabled': localizacoes.length > 2}" [disabled]="localizacoes.length > 2" (click)="adicionarEndereco(item.localizacaoId)">>></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+
+          <td>
+            <table class="lista-endereco">
+              <tbody>
+                <tr *ngFor="let item of localizacoes">
+                  <td class="td-endereco">
+                    {{item.endereco}}
+                  </td>
+                  <td>
+                    <button id="btn-apagar" class="btn-branco" (click)="removerEndereco(item.localizacaoId)">X</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="adicionar-img">
+    <label *ngIf="!imagemDefinida" class="label-file" for="input-img">Adicionar Imagem
+      <input id="input-img" type="file" accept="image/png, image/jpeg" (change)="definirImagem($event)">
+    </label>
+    
+    <button class="btn-remove-img" *ngIf="imagemDefinida" (click)="removerImg()">Remover Imagem</button>
+    <img class="img-produto" [src]="inputImagem" alt="imagem do produto">
+  </div>
+  
+  <div class="produto-btn">
+    <button class="btn-azul" type="submit" (click)="submitForm()" [ngClass]="{'btn-disabled': produtoForm.invalid}" [disabled]="produtoForm.invalid" >Salvar</button>
+    <button class="btn-azul" (click)="limparCampos()">Limpar Campos</button>
+    <button class="btn-branco" [routerLink]="'/produto'">Voltar</button>
+  </div>
+</form>

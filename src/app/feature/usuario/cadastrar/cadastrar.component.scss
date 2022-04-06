@@ -1,0 +1,30 @@
+.secao-cadastro{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40%;
+  margin: 40px auto 0 auto;
+
+  .titulo-cadastro{
+    width: 100%;
+    text-align: center;
+     color: #6D4EC3;
+  }
+
+  label{
+    color: #6D4EC3;
+  }
+
+  input{
+    margin-bottom: 15px;
+    border-radius: 2px;
+    border: 1px solid #6D4EC3;
+    box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.500);
+    height: 19px;
+    padding-left: 10px;
+  }
+  
+  .mb15{
+    margin-top: 40px;
+  }
+}

@@ -1,0 +1,22 @@
+.secao-pedido{
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.500);
+  margin: 10px;
+  border: 1px solid #6d4ec385;
+}
+
+.pedido-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 5px;
+  margin-bottom: 10px;
+
+  button{
+    margin-right: auto;
+  }
+
+  div{
+    margin-right: 50px;
+  }
+}
