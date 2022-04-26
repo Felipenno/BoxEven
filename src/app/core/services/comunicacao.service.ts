@@ -41,6 +41,14 @@ export class ComunicacaoService {
     return this.http.put<T>(this.baseUrl + endPointUrl + '/' + routeid, data);
   }
 
+  patch<T>(endPointUrl: string, routeid: number, data : T): Observable<T>{
+    return this.http.patch<T>(this.baseUrl + endPointUrl + '/' + routeid, data);
+  }
+
+  patchAny(endPointUrl: string, routeid: string, data : any): Observable<any>{
+    return this.http.patch<any>(this.baseUrl + endPointUrl + '/' + routeid, data);
+  }
+
   deletar(endPointUrl: string, routeid: number): Observable<any>{
     return this.http.delete(this.baseUrl + endPointUrl + '/' + routeid);
   }

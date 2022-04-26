@@ -3,12 +3,18 @@
   <button class="btn-branco">Atualizar Lista</button>
 </header>
 
-<section class="secao-pedido">
+<ng-container></ng-container>
+<section *ngFor="let pedido of pedidos" class="secao-pedido">
   <div class="pedido-info">
-    <button class="btn-azul">Concluir</button>
-    <button class="btn-branco">Cancelar</button>
-    <div><strong>Número Pedido: </strong>57575</div>
-    <div><strong>Nome Vendedor: </strong>Maria João</div>
+    <div class="btn-separacao">
+      <button class="btn-azul">Concluir</button>
+      <button class="btn-branco">Cancelar</button>
+    </div>
+
+    <div class="info-vendedor">
+      <div><strong>Número Pedido: </strong>{{pedido.numero}}</div> 
+      <div><strong>Nome Vendedor: </strong>{{pedido.vendedor}}</div>
+    </div>
   </div>
 
   <table class="lista-itens">
@@ -23,217 +29,19 @@
         <th>Unidade</th>                   
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let produto of pedido.produtos">
       <tr>
         <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
+        <td><img class="produto-img" [src]="produto.imagem ?? semImagem"></td>
+        <td>{{produto.produtoId}}</td>
+        <td>{{produto.nome}}</td>
+        <td>{{produto.quantidade}}</td>  
+        <td>
+          <ng-container *ngFor="let localizacao of produto.localizacoes">{{localizacao?.endereco}}<br></ng-container>
+        </td>   
+        <td>{{produto.unidadeMedida?.descricao}}</td>
       </tr>
     </tbody>
   </table>
 </section>
-
-<section class="secao-pedido">
-  <div class="pedido-info">
-    <button class="btn-azul">Concluir</button>
-    <div><strong>Número Pedido: </strong>57575</div>
-    <div><strong>Nome Vendedor: </strong>Maria João</div>
-  </div>
-
-  <table class="lista-itens">
-    <thead>
-      <tr>
-        <th>Separação</th>
-        <th>Imagem</th>
-        <th>Código</th>
-        <th>Descrição</th>
-        <th>Quantidade</th>
-        <th>Endereço</th>
-        <th>Unidade</th>                   
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<section class="secao-pedido">
-  <div class="pedido-info">
-    <button class="btn-azul">Concluir</button>
-    <div><strong>Número Pedido: </strong>57575</div>
-    <div><strong>Nome Vendedor: </strong>Maria João</div>
-  </div>
-
-  <table class="lista-itens">
-    <thead>
-      <tr>
-        <th>Separação</th>
-        <th>Imagem</th>
-        <th>Código</th>
-        <th>Descrição</th>
-        <th>Quantidade</th>
-        <th>Endereço</th>
-        <th>Unidade</th>                   
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="check" id="check"></td>
-        <td>umaimagem</td>
-        <td>9874747</td>
-        <td>Um produto bom</td>   
-        <td>876</td>   
-        <td>A1-C3-LB-P7-V31</td>   
-        <td>Caixa</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+<h1 class="msg-lista-vazia" *ngIf="!pedidos || pedidos.length === 0">Nenhum produto encontrado...</h1>
