@@ -1,7 +1,7 @@
 import { Produto } from "./produto";
 
 export class Pedido {
-    Id: string = '';
+    id: string = '';
     numero: number = 0;
     vendedor: string = '';
     status: number = 0;
