@@ -12,8 +12,8 @@
         <li><a routerLink="/relatorio">Relatório </a></li>
     </ul>
 
-    <div class="nav-usuario">
-        <p>Logado como: <strong>Joaquim Maria</strong></p>
-        <button routerLink="usuario/login" class="btn-branco">Sair</button>
+    <div class="nav-usuario" *ngIf="usuarioLogado">
+        <p>Logado como: <strong>{{usuarioLogado}}</strong></p>
+        <button (click)="sair()" class="btn-branco">Sair</button>
     </div>
 </nav>

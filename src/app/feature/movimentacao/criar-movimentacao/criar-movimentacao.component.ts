@@ -42,7 +42,7 @@ export class CriarMovimentacaoComponent implements OnInit {
 
   criarMovimentacao(){
     this.movimentacao = this.movimentacaoForm.value;
-    this.movimentacao.usuarioId = "0f8fad5b-d9cb-469f-a165-70867728950e";
+    this.movimentacao.usuarioId = localStorage.getItem('idUsuario') ?? '';
 
     this.movimentacaoService.criarMovimentacao(this.movimentacao).subscribe({
       next: dados => console.log(dados),

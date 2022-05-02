@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ComunicacaoService } from 'src/app/core/services/comunicacao.service';
 import { ParamsModel } from 'src/app/shared/models/params-model';
 import { Pedido } from 'src/app/shared/models/pedido';
+import { PedidoAlterarStatus } from 'src/app/shared/models/pedido-alterar-status';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class SeparacaoService {
     return this.comunicacaoService.listar<Pedido[]>(this.endPointUrl + '/filtro', paramsList).pipe();
   }
 
-  atualizarStatus(status: number, pedidoId: string){
-    return this.comunicacaoService.patchAny(this.endPointUrl, pedidoId, status).pipe();
+  atualizarStatus(pedidoAlterarStatus: PedidoAlterarStatus): Observable<PedidoAlterarStatus>{
+    return this.comunicacaoService.patch<PedidoAlterarStatus>(this.endPointUrl, pedidoAlterarStatus).pipe();
   }
 }

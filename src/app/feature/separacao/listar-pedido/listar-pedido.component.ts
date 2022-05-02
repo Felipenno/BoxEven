@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { Pedido } from 'src/app/shared/models/pedido';
+import { PedidoAlterarStatus } from 'src/app/shared/models/pedido-alterar-status';
+import { ProdutoAlterarQuantidade } from 'src/app/shared/models/produto-alterar-quantidade';
+import { ProdutoService } from '../../produto/produto.service';
 import { SeparacaoService } from '../separacao.service';
 
 @Component({
@@ -55,14 +58,38 @@ export class ListarPedidoComponent implements OnInit {
   }
 
   concluirPedido(pedidoId: string):void{
-    this.separacaoService.atualizarStatus(2, pedidoId).subscribe({
+    let pedido = this.pedidos.find(x => x.id = pedidoId) ?? new Pedido();
+    let produtos: ProdutoAlterarQuantidade[] = []
+    
+    pedido.produtos.forEach((p) => {
+      produtos.push({idProduto: p.produtoId, quantidade: p.quantidade ?? 0})
+    })
+
+    let pedidoAlterarStatus: PedidoAlterarStatus = {
+      idPedido: pedido.id,
+      idUsuario: localStorage.getItem("idUsuario") ?? '',
+      numeroPedido: pedido.numero,
+      produtos: produtos,
+      statusPedido: 2
+    }
+
+    console.log('status', pedidoAlterarStatus)
+
+    this.separacaoService.atualizarStatus(pedidoAlterarStatus).subscribe({
       next: dados => { console.log(dados), this.listarPedidos()},
       error: err => console.log(err)
     })
   }
 
   cancelarPedido(pedidoId: string):void{
-    this.separacaoService.atualizarStatus(3, pedidoId).subscribe({
+    let pedidoAlterarStatus: PedidoAlterarStatus = {
+      idPedido: pedidoId,
+      statusPedido: 3
+    }
+
+    console.log('status', pedidoAlterarStatus)
+
+    this.separacaoService.atualizarStatus(pedidoAlterarStatus).subscribe({
       next: dados => { console.log(dados), this.listarPedidos()},
       error: err => console.log(err)
     })

@@ -41,8 +41,8 @@ export class ComunicacaoService {
     return this.http.put<T>(this.baseUrl + endPointUrl + '/' + routeid, data);
   }
 
-  patch<T>(endPointUrl: string, routeid: number, data : T): Observable<T>{
-    return this.http.patch<T>(this.baseUrl + endPointUrl + '/' + routeid, data);
+  patch<T>(endPointUrl: string, data : T): Observable<T>{
+    return this.http.patch<T>(this.baseUrl + endPointUrl, data);
   }
 
   patchAny(endPointUrl: string, routeid: string, data : any): Observable<any>{
