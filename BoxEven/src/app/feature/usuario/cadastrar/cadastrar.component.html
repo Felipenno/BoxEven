@@ -1,0 +1,17 @@
+<form [formGroup]="usuarioForm" class="secao-cadastro">
+  <h2 class="titulo-cadastro">Cadastro</h2>
+  <label for="nome-completo">Nome Completo</label>
+  <input id="nome-completo" type="text" formControlName="nome"> 
+  
+  <label for="e-mail">E-mail</label>
+  <input id="e-mail" type="text" formControlName="email">
+  
+  <label for="senha">Senha</label>
+  <input id="senha" type="password" formControlName="senha">
+  
+  <label for="csenha">Confirmar Senha</label>
+  <input id="csenha" type="password" formControlName="rsenha">
+  
+  <button class="btn-azul" [ngClass]="{'btn-disabled': usuarioForm.invalid}" [disabled]="usuarioForm.invalid" (click)="cadastrar()">Cadastrar</button>
+  <button class="btn-branco mb15" routerLink="/usuario" >Entrar</button>
+</form>

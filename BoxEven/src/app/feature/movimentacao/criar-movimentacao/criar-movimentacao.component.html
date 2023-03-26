@@ -1,0 +1,70 @@
+<header class="header-menu">
+  <h2 class="secao-titulo">Movimentação</h2>
+</header>
+
+<section class="secao-main">
+  <form class="realizar-movimentacao" novalidate [formGroup]="movimentacaoForm">
+    <h2 class="titulo-realizar-movimentacao">Realizar Movimentação</h2>
+
+    <div class="movimentacao-campos">
+      <div class="div-input">
+        <input type="number" placeholder="Código Produto" (focusout)="procurarProduto()" formControlName="produtoId">
+        <input type="number" placeholder="Quantidade" formControlName="quantidade">
+        <select formControlName="tipo">
+          <option value="" disabled selected>Selecione</option>
+          <option value="ENTRADA">Entrada</option>
+          <option value="SAIDA">Saída</option>
+        </select>
+      </div>
+      
+      <textarea placeholder="justificativa" maxlength="300" cols="50" rows="6" formControlName="justificativa"></textarea>
+
+      <div class="btn-movimentacao">
+        <button class="btn-azul" [ngClass]="{'btn-disabled': movimentacaoForm.invalid}" [disabled]="movimentacaoForm.invalid" (click)="criarMovimentacao()">Confirmar Movimentacao</button>
+        <button class="btn-azul" type="reset">Limpar Campos</button>
+      </div>
+    </div>
+    
+    <div class="resumo">
+      <h2>Resumo</h2>
+      <p>
+        <strong>Produto: </strong> 
+        <img width="50px" [src]="produto ? produto.imagem : semImagem"> {{ produto ? produto.produtoId : ' -- '}} - {{produto ? produto.nome : ' -- '}}
+      </p>
+      <p><strong>Quantidade: </strong> {{movimentacaoForm.get('quantidade')?.value}} </p>
+      <p><strong>Tipo: </strong> {{movimentacaoForm.get('tipo')?.value}}</p>
+      <p><strong>Justificativa: </strong> {{movimentacaoForm.get('justificativa')?.value}}</p>
+      
+    </div>
+
+  </form>
+
+  <table class="lista-itens">
+    <caption>Ultimas 20 Movimentações</caption>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Quantidade</th>
+        <th>tipo</th>
+        <th>Data</th>
+        <th>Produto</th>
+        <th>Usuario</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let mo of movimentacoes" >
+      <tr>
+        <td>{{mo.movimentacaoId}}</td>
+        <td>{{mo.quantidade}}</td>
+        <td>{{mo.tipo}}</td>
+        <td>{{mo.dataOperacao | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+        <td>{{mo.produto}}</td>
+        <td>{{mo.usuario}}</td>
+      </tr>
+      <tr>
+        <td style="border-bottom: 1px solid black;" colspan="6"><strong>Justificativa: </strong> {{mo.justificativa}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+  <h1 class="msg-lista-vazia" *ngIf="!movimentacoes || movimentacoes.length === 0">Nenhuma localização encontrada...</h1>
+</section>

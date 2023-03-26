@@ -1,0 +1,55 @@
+.filtro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  
+  input{
+    margin: 0px 10px;
+    border-radius: 2px;
+    border: 1px solid #6D4EC3;
+    box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.500);
+    height: 19px;
+    padding-left: 10px;
+  }
+
+  select{
+    cursor: pointer;
+    margin-right: 20px;
+    border-radius: 2px;
+    border: 1px solid #6D4EC3;
+    box-shadow:  1px 1px 1px 0px rgba(0, 0, 0, 0.500);
+    height: 23px;
+  }
+
+  button{
+    margin-right: 15px;
+  }
+}
+
+.lista-itens tbody{
+  tr{
+    td {
+      .produto-img{
+        height: 40px;
+      }
+    }
+
+    .td-editar{
+      text-align: center;
+      width: 70px;
+      padding: 0px;
+
+      button{
+        display: none;
+        margin: 0;
+      }
+    }
+  }
+
+  tr:hover{
+    .td-editar button{
+      display: unset;
+    }
+  }
+}

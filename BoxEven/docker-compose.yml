@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  BEFRONT:
+    image: befront
+    build: .
+    ports:
+      - 8081:80

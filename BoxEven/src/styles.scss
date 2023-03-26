@@ -1,0 +1,126 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+html, body{ 
+  height: 100%;  
+  margin: 0; 
+  padding: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.estrutura-principal{
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.conteudo-principal{
+  margin-bottom: auto;
+}
+
+.header-menu{
+  display: flex;
+  justify-content: space-between;
+
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.500);
+  background-color: #6D4EC3;
+  color: #fff;
+  margin: 10px;
+  padding: 10px;
+
+  .secao-titulo{
+    color: white;
+    margin: 0;
+  }
+}
+
+.secao-main{
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.500);
+  margin: 10px;
+  border: 1px solid #6d4ec385;
+  align-self: flex-start;
+}
+
+.btn-branco{
+  cursor: pointer;
+  border: 1px solid #6D4EC3;
+  color: #6D4EC3;
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 3px;
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.555);
+  transition: 0.3s;
+}
+
+.btn-branco:hover{
+  background-color: #6D4EC3;
+  border: 1px solid #6D4EC3;
+  color: white;
+}
+
+.btn-azul{
+  cursor: pointer;
+  border: 1px solid #6D4EC3;
+  background-color: #6D4EC3;
+  color: #fff;
+  border-radius: 3px;
+  padding: 3px; // 
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.555);
+  transition: 0.3s;
+}
+
+.btn-azul:hover{
+  background-color: #fff;
+  color: #6D4EC3;
+}
+
+.btn-azul:active, .btn-branco:active{
+  transform: translateY(3px);
+}
+
+.btn-disabled{
+  cursor: none;
+  border: 1px solid #6d4ec34d;
+  background-color: #6d4ec3be;
+  color: rgba(255, 255, 255, 0.637);
+  border-radius: 2px;
+  padding: 3px;
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.555);
+  transition: none;
+  pointer-events: none;
+}
+
+.lista-itens{
+  width: 100%;
+  
+  caption{
+    margin: 0 2px 0 2px;
+    font-size: 18px;
+  }
+
+  th, caption{
+    background-color:#6D4EC3;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  tbody tr td{
+    text-align: left;
+    padding: 6px 0px 6px 15px;
+  }
+
+  tbody tr:hover{
+    background-color: #a58de7;
+    color: white;
+  }
+}
+
+.msg-lista-vazia{
+  margin-top: 15px;
+  text-align: center;
+  color: #b04ec3a9;
+}
+
+.produto-img{
+  height: 40px;
+}

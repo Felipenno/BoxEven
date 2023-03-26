@@ -1,0 +1,5 @@
+<ul class="pag-ul">
+    <li> <button class="mudar-pagina" [disabled]="primeiraPagina" (click)="voltarPagina()"> <i class="bi bi-arrow-left-circle-fill"></i> </button>  </li>
+    <li class="pag-numero"><i [class]="cssNumero"></i></li>
+    <li> <button class="mudar-pagina" [disabled]="paginaFinal" (click)="proximaPagina()"> <i class="bi bi-arrow-right-circle-fill"></i> </button> </li>
+</ul>

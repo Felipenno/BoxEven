@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class UnidadeMedida {\n  constructor() {\n    this.unidadeMedidaId = 0;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

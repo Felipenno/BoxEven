@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { Produto } from \"./produto\";\nexport class Localizacao {\n  constructor() {\n    this.localizacaoId = -1;\n    this.produto = new Produto();\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

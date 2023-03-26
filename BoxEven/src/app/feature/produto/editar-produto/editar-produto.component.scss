@@ -1,0 +1,185 @@
+.produto-input{
+  margin: 20px auto;
+  padding: 10px;
+  width: 50%;
+
+  h2{
+    text-align: center;
+    color: #6D4EC3;
+  }
+
+  input[type="text"], input[type="number"]{
+    border-radius: 2px;
+    border: 1px solid #6D4EC3;
+    box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.500);
+    padding-left: 10px;
+  }
+
+  input[type="text"]{
+    box-sizing: border-box;
+    width: 83%;
+    height: 25px;
+  }
+
+  .div-text{
+    gap: 12px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .input-number{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    width: 100%;
+
+    label{
+      width: 30%;
+    }
+
+    input[type="number"]{
+      width: 28%;
+      height: 21px;
+    }
+  }
+  
+  section{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    width: 100%;
+    height: 20px;
+
+    .check-input{
+      display: flex;
+      margin-right: auto;
+
+      input[type="checkbox"]{
+        //all: unset; //tira todas a propriedades
+        width: 30px;
+        box-shadow: none;
+        height: 19px;
+      }
+    }
+
+    select{
+      cursor: pointer;
+      border-radius: 2px;
+      box-shadow:  1px 1px 0px 0px rgba(0, 0, 0, 0.500);
+      min-width: 25%;
+      margin-left: 5px;
+    }
+  }
+
+  .localizacao{
+    margin-top: 10px;
+    border: 1px solid #6D4EC3;
+    
+    .table-principal{
+      width: 100%;
+      
+      caption{
+        margin: 2px 2px 0px 2px;
+        background-color: #6D4EC3;
+        color: white;
+      }
+
+      thead tr th{
+        background-color: #6D4EC3;
+        color: white;
+      }
+
+      tbody tr td{
+        width: 51%;
+      }
+
+      .lista-endereco{
+        width: 100%;
+
+        tbody{
+          display: block;
+          overflow-y: scroll;
+          height: 150px;
+
+          tr .td-endereco{
+            border-radius: 2px;
+            padding-left: 5px;
+            width: 100%;
+            background-color: #6D4EC3;
+            box-shadow:  1px 1px 0px 0px rgba(0, 0, 0, 0.500);
+            color: #fff;
+          }
+
+          tr td #btn-apagar{
+            width: 20px;
+          }
+        }
+
+        tbody::-webkit-scrollbar{
+          width: 6px;
+        }
+
+        tbody::-webkit-scrollbar-track{
+          background-color: #fff;
+        }
+
+        tbody::-webkit-scrollbar-thumb{
+          background-color: #6D4EC3;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+
+  .adicionar-img{
+    border: 1px solid #6D4EC3;
+    height: 120px;
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .label-file{
+      cursor: pointer;
+      height: 100%;
+      width: 70%;
+      text-align: center;
+      line-height: 660%;
+      font-weight: 600;
+      font-size: 18px;
+      color: #b04ec38c;
+
+      input[type="file"]{
+        display: none;
+      }
+    }
+    
+    .img-produto{
+      margin-right: 20px;
+      height: 100%;
+    }
+
+    .btn-remove-img{
+      cursor: pointer;
+      height: 100%;
+      width: 70%;
+      font-weight: 700;
+      font-size: 18px;
+      color: #b04ec38c;
+      background-color: #fff;
+      border: none;
+    }
+  }
+
+  .produto-btn{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+  }
+}

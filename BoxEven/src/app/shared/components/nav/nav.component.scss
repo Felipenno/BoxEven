@@ -1,0 +1,51 @@
+.nav-principal{
+  background-color: #6D4EC3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.500);
+
+  .nav-logo{
+    display: flex;
+    margin-left: 20px;
+    text-decoration: none;
+    
+    img{
+      height: 50px;
+      width: 50px;
+    }
+
+    h1{
+      margin: auto 5px;
+      font-weight: 700;
+      color: white;
+    }
+  }
+
+  .nav-lista{
+    list-style: none;
+    margin: 0 auto;
+    
+    li{
+     display: inline-block;
+     margin-right: 30px;
+
+     a{
+       text-decoration: none;
+       color:white;
+       font-weight: 700;
+     }
+    }
+  }
+
+  .nav-usuario{
+    margin-right: 30px;
+
+    p{
+      display: inline;
+      margin-right: 30px;
+    }
+  }
+}
+

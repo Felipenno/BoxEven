@@ -1,0 +1,50 @@
+<header class="header-menu">
+  <h2 class="secao-titulo">Pedidos para Separação</h2>
+  <button class="btn-branco" (click)="listarPedidos()">Atualizar Lista</button>
+</header>
+
+<section class="secao-pedido" *ngFor="let pedido of pedidos; index as pe" >
+
+  <form [formGroup]="getFormGroup(pe)">
+    <div class="pedido-info">
+      <div class="btn-separacao">
+        <button class="btn-azul" [ngClass]="{'btn-disabled': getFormGroup(pe).invalid}" [disabled]="getFormGroup(pe).invalid" (click)="concluirPedido(pedido.id)">Concluir</button>
+        <button class="btn-branco" [ngClass]="{'btn-disabled': getFormGroup(pe).invalid}" [disabled]="getFormGroup(pe).invalid" (click)="cancelarPedido(pedido.id)">Cancelar</button>
+      </div>
+  
+      <div class="info-vendedor">
+        <div><strong>Número Pedido: </strong>{{pedido.numero}}</div> 
+        <div><strong>Nome Vendedor: </strong>{{pedido.vendedor}}</div>
+      </div>
+    </div>
+  
+    <table class="lista-itens">
+      <thead>
+        <tr>
+          <th>Separação</th>
+          <th>Imagem</th>
+          <th>Código</th>
+          <th>Descrição</th>
+          <th>Quantidade</th>
+          <th>Endereço</th>
+          <th>Unidade</th>                   
+        </tr>
+      </thead>
+      <tbody *ngFor="let produto of pedido.produtos; index as pr">
+        <tr>
+          <td><input type="checkbox"  [formControl]="getFormControl(pe, pr)"></td>
+          <td><img class="produto-img" [src]="produto.imagem ?? semImagem"></td>
+          <td>{{produto.produtoId}}</td>
+          <td>{{produto.nome}}</td>
+          <td>{{produto.quantidade}}</td>  
+          <td>
+            <ng-container *ngFor="let localizacao of produto.localizacoes">{{localizacao?.endereco}}<br></ng-container>
+          </td>   
+          <td>{{produto.unidadeMedida.descricao}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  
+</section>
+<h1 class="msg-lista-vazia" *ngIf="!pedidos || pedidos.length === 0">Nenhum produto encontrado...</h1>

@@ -1,0 +1,35 @@
+.pag-ul{
+    list-style: none;
+
+    li{
+        display: inline;
+    }
+}
+
+.pag-numero{
+    color: #6D4EC3;
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+.mudar-pagina{
+    color: #6D4EC3;
+    font-size: 30px;
+
+    margin-right: 20px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    border: none;
+    background-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
+
+    cursor: pointer;
+}
+
+.mudar-pagina:disabled{
+    opacity: 0.6;
+    cursor: auto;
+}

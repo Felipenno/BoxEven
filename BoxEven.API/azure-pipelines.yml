@@ -1,0 +1,38 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main #trigger sera a branch main
+
+variables:
+  buildConfiguration: 'Release'
+  dotNetFramework: 'net6.0'
+  dotNetVersion: '6.0.x'
+  targetRuntime: 'win-x64'
+
+jobs:
+ - job: 'Build'
+   pool:
+    vmImage: 'ubuntu-latest'
+   steps:
+   - task: 'UseDotNet@2'
+     displayName: 'Obtendo SDK'
+     inputs:
+      packageType: 'sdk'
+      version: '$(dotNetVersion)'
+   - script: 'dotnet restore'
+     displayName: 'Restauração dos pacotes'
+   - script: 'dotnet build --configuration $(buildConfiguration)'
+     displayName: 'Compilação da aplicação'
+   - script: 'dotnet test'
+     displayName: 'Teste da aplicação'
+   - script: 'dotnet publish --configuration $(BuildConfiguration) --framework $(dotNetFramework) --runtime $(targetRuntime) --self-contained --output $(Build.ArtifactStagingDirectory)'
+     displayName: 'Publicação da aplicação'
+   - task: 'PublishBuildArtifacts@1'
+     displayName: 'Gerando artefato da publicação'
+     inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'BoxEvenApiArtifact'
+      publishLocation: 'Container'

@@ -1,0 +1,36 @@
+.secao-pedido{
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.500);
+  margin: 10px;
+  border: 1px solid #6d4ec385;
+}
+
+.pedido-info{
+  display: flex;
+  
+  align-items: center;
+
+  padding: 5px;
+  margin-bottom: 10px;
+
+  .btn-separacao{
+    align-self: flex-start;
+
+    .btn-azul{
+      margin-right: 50px;
+    }
+  }
+
+  .info-vendedor{
+    margin: 0 auto;
+    display: flex;
+    
+
+    div{
+      margin-right: 30px;
+    }
+  }
+
+  
+
+  
+}

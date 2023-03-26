@@ -1,0 +1,72 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main #trigger sera a branch main
+
+variables:
+  projectPath: './BE.Application/BE.Application.csproj'
+  buildConfiguration: 'Release'
+  dotNetFramework: 'net6.0'
+  dotNetVersion: '6.0.x'
+  targetRuntime: 'linux-x64'
+  AppServicePlanName: 'BoxEvenASPN'
+  ResourceGroupName: 'BoxEven_ResourceGroup'
+  WebAppName: 'BoxEvenAPI'
+
+jobs:
+ - job: 'Build'
+   pool:
+    vmImage: 'ubuntu-latest'
+   steps:
+   - task: 'UseDotNet@2'
+     displayName: 'Obtendo SDK'
+     inputs:
+      packageType: 'sdk'
+      version: '$(dotNetVersion)'
+   - script: 'dotnet restore'
+     displayName: 'Restauração dos pacotes'
+   - script: 'dotnet build --configuration $(buildConfiguration)'
+     displayName: 'Compilação da aplicação'
+   - script: 'dotnet test'
+     displayName: 'Teste da aplicação'
+   - script: 'dotnet publish --configuration $(BuildConfiguration) --framework $(dotNetFramework) --runtime $(targetRuntime) --self-contained --output $(Build.ArtifactStagingDirectory)'
+     displayName: 'Publicação da aplicação'
+   - task: 'PublishBuildArtifacts@1'
+     displayName: 'Gerando artefato da publicação'
+     inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'BoxEvenApiArtifact'
+      publishLocation: 'Container'
+ - job: 'Deploy'
+   dependsOn: 'Build'
+   pool:
+    vmImage: 'ubuntu-latest'
+   steps:
+   - task: DownloadBuildArtifacts@1
+     displayName: 'Baixar Artefato'
+     inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        artifactName: 'BoxEvenApiArtifact'
+        downloadPath: '$(System.ArtifactsDirectory)'
+   - task: AzureCLI@2
+     displayName: 'Implantar WebApp no Azure'
+     inputs:
+       azureSubscription: 'BoxEvenAzureConnection'
+       scriptType: 'pscore'
+       scriptLocation: 'inlineScript'
+       inlineScript: |
+        az appservice plan create --name $(AppServicePlanName) --resource-group $(ResourceGroupName) --sku s1
+        az webapp create --resource-group $(ResourceGroupName) --plan $(AppServicePlanName) --name $(WebAppName) -- runtime "DOTNET|6.0"
+   - task: AzureRmWebAppDeployment@4
+     displayName: 'Deploy do artefato no Azure Web App'
+     inputs:
+      ConnectionType: 'AzureRM'
+      azureSubscription: 'BoxEvenAzureConnection'
+      appType: 'webAppLinux'
+      WebAppName: '$(WebAppName)'
+      packageForLinux: '$(System.ArtifactsDirectory)/**/*.zip'
+      

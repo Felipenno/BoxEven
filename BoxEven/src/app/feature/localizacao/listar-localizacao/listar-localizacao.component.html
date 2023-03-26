@@ -1,0 +1,182 @@
+<header class="header-menu">
+  <h2 class="secao-titulo">Localização</h2>
+
+  <div class="header-btn">
+    <button class="btn-branco" (click)="criarLocalizacao()">Nova localização</button>
+  </div>
+</header>
+
+<section class="secao-main">
+  <form class="filtro" novalidate [formGroup]="filtroForm">
+
+    <select formControlName="andar">
+      <option value="" selected disabled>Andar</option>
+      <option value="SUB">SUB</option>
+      <option value="TER">TER</option>
+      <ng-container *ngFor="let n of gerarNumeros(5)">
+        <option [value]="n">{{n}}</option>
+      </ng-container>
+    </select>
+
+    <select formControlName="corredor">
+      <option value="" selected disabled>Corredor</option>
+      <ng-container *ngFor="let n of gerarNumeros(20)">
+        <option [value]="n">{{n}}</option>
+      </ng-container>
+    </select>
+
+    <select formControlName="lado">
+      <option value="">Qualquer Lado</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </select>
+
+    <select formControlName="prateleira">
+      <option value="" selected disabled>Prateleira</option>
+      <ng-container *ngFor="let n of gerarNumeros(20)">
+        <option [value]="n">{{n}}</option>
+      </ng-container>
+    </select>
+
+    <p>OU</p>
+
+    <input type="number" placeholder="Cód. Produto" formControlName="produtoCodigo">
+
+    <button type="submit" class="btn-azul" (click)="listarLocalizacoes()"
+      [ngClass]="{'btn-disabled': filtroForm.invalid}" [disabled]="filtroForm.invalid">Buscar</button>
+    <button type="reset" class="btn-azul">Resetar</button>
+  </form>
+
+  <table class="lista-itens">
+    <thead>
+      <tr>
+        <th>Endereço</th>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Quantidade</th>
+        <th>Unidade Medida</th>
+        <th>Editar</th>
+        <th>Remover</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let local of localizacoes">
+      <tr>
+
+        <td>{{local.andar}} - {{local.corredor}} - {{local.lado}} - {{local.prateleira}} - {{local.vao}}</td>
+        <td>{{local.produto?.produtoId}}</td>
+        <td>{{local.produto?.nome ?? '----------------------------------'}}</td>
+        <td>{{local.produto?.quantidade}}</td>
+        <td>{{local.produto?.unidadeMedida?.descricao}}</td>
+
+        <td class="td-editar"><button class="btn-azul" (click)="editarLocalizacao(local.localizacaoId!)">Editar</button>
+        </td>
+        <td class="td-editar"><button class="btn-azul" (click)="removerLocalizacao(local.localizacaoId)">Remover</button></td>
+      </tr>
+
+    </tbody>
+  </table>
+  <h1 class="msg-lista-vazia" *ngIf="!localizacoes || localizacoes.length === 0">Nenhuma localização encontrada...</h1>
+</section>
+
+
+<!-- Modal -->
+<div id="localizacaoModal" class="modal">
+
+  <form class="modal-content" novalidate [formGroup]="localizacaoForm">
+    <div class="content-options">
+
+      <label for="andar">Andar:</label>
+      <select id="andar" formControlName="andar">
+        <option value="" selected disabled>Selecione</option>
+        <option value="SUB">SUB</option>
+        <option value="TER">TER</option>
+        <ng-container *ngFor="let n of gerarNumeros(5)">
+          <option [value]="n">{{n}}</option>
+        </ng-container>
+      </select>
+
+      <label for="corredor">Corredor:</label>
+      <select id="corredor" formControlName="corredor">
+        <option value="" selected disabled>Selecione</option>
+        <ng-container *ngFor="let n of gerarNumeros(20)">
+          <option [value]="n">{{n}}</option>
+        </ng-container>
+      </select>
+
+      <label for="lado">Lado:</label>
+      <select id="lado" formControlName="lado">
+        <option value="" selected disabled>Selecione</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+      </select>
+
+      <label for="prateleira">Prateleira:</label>
+      <select id="prateleira" formControlName="prateleira">
+        <option value="" selected disabled>Selecione</option>
+        <ng-container *ngFor="let n of gerarNumeros(20)">
+          <option [value]="n">{{n}}</option>
+        </ng-container>
+      </select>
+
+      <label for="vao">Vão:</label>
+      <select id="vao" formControlName="vao">
+        <option value="" selected disabled>Selecione</option>
+        <ng-container *ngFor="let n of gerarNumeros(100)">
+          <option [value]="n">{{n}}</option>
+        </ng-container>
+      </select>
+
+    </div>
+    <hr>
+
+    <div class="produto-alocado">
+      <p><span>Produto Atual: </span> {{produtoAlocado?.produtoId ?? "Produto não alocado..."}} {{produtoAlocado?.nome}}
+        {{produtoAlocado?.quantidade}} {{produtoAlocado?.unidadeMedida.descricao}}</p>
+      <button (click)="removerProduto()" class="btn-azul"> X </button>
+    </div>
+
+    <hr>
+    <table class="lista-itens">
+      <caption>Produtos não alocados</caption>
+      <thead>
+        <tr>
+          <th>Imagem Produto</th>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Quantidade</th>
+          <th>Unidade Medida</th>
+          <th>Selecionar</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let p of produtos">
+        <tr>
+          <td><img class="produto-img" [src]="p.imagem ?? semImagem" alt="imagem produto"></td>
+          <td>{{p.produtoId}}</td>
+          <td>{{p.nome ? p.nome : 'Produto não alocado'}}</td>
+          <td>{{p.quantidade}}</td>
+          <td>{{p.unidadeMedida?.descricao}}</td>
+
+          <td class="td-editar"><button (click)="alocarProduto(p.produtoId)" class="btn-azul">Selecionar</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <button class="btn-azul" (click)="salvarAlteracao()" [ngClass]="{'btn-disabled': localizacaoForm.invalid}" [disabled]="localizacaoForm.invalid">Gravar</button>
+    <button class="btn-branco" (click)="fecharModal('localizacaoModal')">Voltar</button>
+  </form>
+</div>
+
+<!-- modal deletar -->
+<div id="deletarLocalizacaoModal" class="modal">
+  <div class="modal-content-delete">
+    <div class="modal-header">
+      <h2>Remover Localização?</h2>
+    </div>
+    <div class="modal-body">
+      <button class="btn-azul" (click)="salvarAlteracao()">Remover</button>
+      <button class="btn-branco" (click)="fecharModal('deletarLocalizacaoModal')">Cancelar</button>
+    </div>
+  </div>
+</div>

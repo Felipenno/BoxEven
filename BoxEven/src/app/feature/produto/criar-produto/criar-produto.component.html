@@ -1,0 +1,43 @@
+<form autocomplete="off" novalidate class="produto-input" [formGroup]="produtoForm" (ngSubmit)="submitForm()">
+  <h2>Criar Produto</h2>
+
+  <input type="text" placeholder="Nome Produto" formControlName="nome">
+  
+  <div class="input-number">
+    <input type="number" placeholder="Preco" formControlName="preco">
+    <input type="number" placeholder="Quantidade" formControlName="quantidade">
+  </div>
+
+  <input type="text" placeholder="Código Barras" formControlName="codigoBarras">
+  
+  <section>
+    <div class="check-input">
+      <label for="check-ativo">Ativo</label>
+      <input type="checkbox" id="check-ativo" formControlName="ativo">
+    </div>
+    
+    <label class="label-unidade" for="medida">Unidade de medida: </label>
+    <select id="medida" formControlName="unidadeMedidaId">
+      <option value="1">Caixa</option>
+      <option value="2">Unidade</option>
+      <option value="3">Pacote</option>
+      <option value="4">Outro</option>
+      <option value="5">Metro</option>
+    </select>
+  </section>
+  
+  <div class="adicionar-img">
+    <label *ngIf="!imagemDefinida" class="label-file" for="input-img">Adicionar Imagem
+      <input id="input-img" type="file" accept="image/png, image/jpeg" (change)="definirImagem($event)">
+    </label>
+    
+    <button class="btn-remove-img" *ngIf="imagemDefinida" (click)="removerImg()">Remover Imagem</button>
+    <img class="img-produto" [src]="inputImagem" alt="imagem do produto">
+  </div>
+  
+  <div class="produto-btn">
+    <button class="btn-azul" type="submit" [ngClass]="{'btn-disabled': produtoForm.invalid}" [disabled]="produtoForm.invalid">Cadastrar</button>
+    <button class="btn-azul" type="reset" (click)="removerImg()">Limpar Campos</button>
+    <button class="btn-branco" [routerLink]="'/produto'">Voltar</button>
+  </div>
+</form>

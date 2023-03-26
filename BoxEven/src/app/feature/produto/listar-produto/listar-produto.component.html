@@ -1,0 +1,54 @@
+<header class="header-menu">
+  <h2 class="secao-titulo">Produto</h2>
+
+  <button class="btn-branco" [routerLink]="'cadastro'">Novo Produto</button>
+</header>
+
+<section class="secao-main">
+  <form class="filtro" novalidate [formGroup]="filtroForm" (ngSubmit)="listar()">
+    <input type="number" placeholder="Código" formControlName="codigo">
+    <div><strong> ou </strong></div>
+    <input type="text" placeholder="Descrição" formControlName="descricao">
+    <select formControlName="status">
+      <option value="">--</option>
+      <option value="ativo">Ativo</option>
+      <option value="inativo">Inativo</option>
+    </select>
+    <button type="submit" class="btn-azul" [ngClass]="{'btn-disabled': filtroForm.invalid}" [disabled]="filtroForm.invalid">Buscar</button>
+    <button type="reset" class="btn-azul">Resetar</button>
+  </form>
+
+  <table class="lista-itens">
+    <thead>
+      <tr>
+        <th>Imagem</th>
+        <th>Código</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Endereço</th>
+        <th>Unidade</th>
+        <th>Cód. barras</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let produto of produtos">
+      <tr>
+        <td><img class="produto-img" [src]="produto.imagem ?? semImagem" ></td>
+        <td>{{produto.produtoId}}</td>
+        <td>{{produto.nome}}</td>
+        <td>R$ {{produto.preco}}</td>
+        <td>{{produto.quantidade}}</td>
+        <td>
+          <ng-container *ngFor="let localizacao of produto.localizacoes">{{localizacao?.endereco}}<br></ng-container>
+        </td>
+        <td>{{produto.unidadeMedida?.descricao}}</td>
+        <td>{{produto.codigoBarras ? produto.codigoBarras : 'XXXX'}}</td>
+        <td class="td-editar"><button class="btn-azul" [routerLink]="'editar/'+ produto.produtoId">Editar</button></td>
+      </tr>
+      
+    </tbody>
+  </table>
+  <h1 class="msg-lista-vazia" *ngIf="!produtos || produtos.length === 0">Nenhum produto encontrado...</h1>
+</section>
+<app-paginacao [itensPorPagina]="itensPagina"></app-paginacao>

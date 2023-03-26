@@ -1,0 +1,11 @@
+<form [formGroup]="usuarioForm" class="secao-login">
+  <h2 class="titulo-login">Entrar</h2>
+  <label for="login">Login</label>
+  <input id="login" type="text" maxLength="10" formControlName="apelido">
+  
+  <label for="senha">Senha</label>
+  <input id="senha" type="password" maxLength="200" formControlName="senha">
+  
+  <button class="btn-azul" [ngClass]="{'btn-disabled': usuarioForm.invalid}" [disabled]="usuarioForm.invalid" (click)="submitForm()">Entrar</button>
+  <button class="btn-branco mb15" routerLink="./cadastro" >Cadastrar</button>
+</form>

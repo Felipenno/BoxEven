@@ -1,0 +1,18 @@
+<nav class="nav-principal">
+    <a class="nav-logo" href="#">
+        <img src="assets/img/logoBranco.png" alt="logo">
+        <h1>BoxEven</h1>
+    </a>
+
+    <ul class="nav-lista">
+        <li><a routerLink="./">Separação</a></li>
+        <li><a routerLink="./produto">Produto</a></li>
+        <li><a routerLink="./localizacao">Localização</a></li>
+        <li><a routerLink="./movimentacao">Movimentação</a></li>
+    </ul>
+
+    <div class="nav-usuario" *ngIf="usuarioLogado">
+        <p>Logado como: <strong>{{usuarioLogado}}</strong></p>
+        <button (click)="sair()" class="btn-branco">Sair</button>
+    </div>
+</nav>

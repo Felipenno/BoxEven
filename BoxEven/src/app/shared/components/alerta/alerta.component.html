@@ -1,0 +1,4 @@
+<div *ngIf="exibirAlerta" [ngClass]="alertaClass()">
+    <a class="botao-fechar-alerta" (click)="removerAlerta()">&times;</a>
+    <span [innerHTML]="alerta.mensagem"></span>
+</div>

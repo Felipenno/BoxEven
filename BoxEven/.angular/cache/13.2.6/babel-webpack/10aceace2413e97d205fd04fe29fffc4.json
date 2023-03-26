@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { UnidadeMedida } from \"./unidade-medida\";\nexport class Produto {\n  constructor() {\n    this.produtoId = 0;\n    this.unidadeMedida = new UnidadeMedida();\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

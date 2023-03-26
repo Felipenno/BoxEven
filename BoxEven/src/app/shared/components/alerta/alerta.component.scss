@@ -1,0 +1,48 @@
+.alerta{
+    text-align: left;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
+
+    width: 500px;
+
+    position: fixed;
+    top: 60px;
+    right: 10px;
+}
+
+.botao-fechar-alerta{
+    cursor: pointer;
+    float: right;
+
+    color: black;
+}
+
+.alerta-sucesso{
+    background-color: rgb(0, 255, 149);
+    border: 1px solid rgb(0, 255, 157);
+    color: rgba(0, 0, 0, 0.750);
+    font-weight: 500;
+}
+
+.alerta-info{
+    background-color: rgb(73, 182, 255);
+    border: 1px solid rgb(0, 183, 255);
+    color: rgba(0, 0, 0, 0.750);
+    font-weight: 500;
+}
+
+.alerta-aviso{
+    background-color: rgb(176, 255, 73);
+    border: 1px solid rgb(94, 255, 0);
+    color: rgba(0, 0, 0, 0.750);
+    font-weight: 500;
+}
+
+.alerta-erro{
+    background-color: rgb(255, 108, 108);
+    border: 1px solid rgb(230, 74, 74);
+    color: white;
+    font-weight: 500;
+}

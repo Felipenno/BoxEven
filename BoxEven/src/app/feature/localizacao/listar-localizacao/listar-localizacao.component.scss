@@ -1,0 +1,130 @@
+.header-btn{
+  button{
+    margin-left: 15px;
+  }
+}
+
+.filtro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+
+  input{
+    margin-right: 15px;
+    border-radius: 3px;
+    border: 1px solid #6D4EC3;
+    box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.500);
+    height: 19px;
+    padding-left: 10px;
+    max-width: 100px;
+  }
+
+  select{
+    cursor: pointer;
+    margin-right: 15px;
+    border-radius: 2px;
+    border: 1px solid #6D4EC3;
+    box-shadow:  1px 1px 1px 0px rgba(0, 0, 0, 0.500);
+    height: 23px;
+  }
+
+  p{
+    margin: 0 15px 0 0;
+    font-weight: 700;
+  }
+
+  button{
+    margin-right: 15px;
+  }
+}
+
+.msg-lista-vazia{
+  margin-top: 15px;
+  text-align: center;
+  color: #b04ec3a9;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 8% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+
+    .content-options{
+      label{
+        margin-right: 5px;
+      }
+
+      select{
+        margin-right: 15px;
+      }
+    }
+
+    .produto-alocado{
+      p{
+        display: inline;
+        font-weight: 400;
+        margin-right: 10px;
+
+        span{
+          font-weight: 500;
+        }        
+      }
+    }
+
+    .produto-img{
+      height: 40px;
+    }
+
+    button{
+      margin-right: 50px;
+    }
+  }
+
+  .modal-content-delete {
+    position: relative;
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+
+    .modal-header{
+      text-align: center;
+    }
+
+    .modal-body{
+      display: flex;
+      justify-content: space-between;
+
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+}
+
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
